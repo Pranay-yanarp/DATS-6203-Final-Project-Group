@@ -6,7 +6,7 @@ Our project objective was to predict disease in a Cotton plant/leaf.
 
 ## Folders
 * Code contains all of our code used in the project.
-* Group-Proposall contains the proposal for the project.
+* Group-Proposal contains the proposal for the project.
 * Final-Group-Presentation contains a PowerPoint presentation of our project.
 * Final-Group-Project-Report contains a report of our findings from this project.
 
