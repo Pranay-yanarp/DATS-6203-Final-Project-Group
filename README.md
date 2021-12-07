@@ -13,5 +13,5 @@ Our project objective was to predict disease in a Cotton plant/leaf.
 ## Code Execution
 1. Download the dataset from https://www.kaggle.com/janmejaybhoi/cotton-disease-dataset
 2. The 'train_pretrained.py' should be in the same directory as the 'train', 'val' and 'test' folders after you download the data.
-3. The 'train_pretrained.py' script contained the training for 3 pretrained models. At the beginning of the code, variable 'model_name' should be set in order to choose which pretrained model to use. (options are 'resnet50', 'vgg16' and 'densenet121')
+3. The 'train_pretrained.py' script contains training for 3 pretrained models. At the beginning of the code, variable 'model_name' should be set in order to choose which pretrained model to use. (options are 'resnet50', 'vgg16' and 'densenet121')
 4. The end of the script also consists a test section where the path of an unseen image can be given to predict its class.
