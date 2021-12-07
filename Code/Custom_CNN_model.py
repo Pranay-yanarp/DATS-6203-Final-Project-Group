@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 import tensorflow
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score, classification_report
 import numpy as np
-train_data_path = "C:/Users/rohan/Desktop/GWU/Fall 21/ML2/Final Project/Cotton Disease/train"
-validation_data_path = "C:/Users/rohan/Desktop/GWU/Fall 21/ML2/Final Project/Cotton Disease/val"
+train_data_path = "train/"
+validation_data_path = "val/"
  
 
 
@@ -26,7 +26,7 @@ training_datagen = ImageDataGenerator(rescale=1./255,
                                       fill_mode='nearest')
 
 
-training_data = training_datagen.flow_from_directory(train_data_path, # this is the target directory
+training_data = training_datagen.flow_from_directory(train_data_path, 
                                       target_size=(300, 300), 
                                       batch_size=32,
                                       class_mode='binary')  
@@ -57,34 +57,36 @@ callbacks_list = [checkpoint]
 
 
 #Building cnn model
-cnn_model = keras.models.Sequential([
-                                    keras.layers.Conv2D(filters=32, kernel_size=3, input_shape=[300, 300, 3]),
+mannual_cnn_model = keras.models.Sequential([
+                                    keras.layers.Conv2D(32, 3, input_shape=[300, 300, 3]),
                                     keras.layers.MaxPooling2D(pool_size=(2,2)),
-                                    keras.layers.Conv2D(filters=64, kernel_size=3),
+                                    keras.layers.Conv2D(64, 3),
                                     keras.layers.MaxPooling2D(pool_size=(2,2)),
-                                    keras.layers.Conv2D(filters=128, kernel_size=3),
+                                    keras.layers.Conv2D(128, 3),
+                                    keras.layers.MaxPooling2D(pool_size=(2,2)),
+                                    keras.layers.Conv2D(128, 3),
+                                    keras.layers.MaxPooling2D(pool_size=(2,2)),
+                                    keras.layers.Conv2D(128, 3),
                                     keras.layers.MaxPooling2D(pool_size=(2,2)),                                    
-                                    keras.layers.Conv2D(filters=256, kernel_size=3),
-                                    keras.layers.MaxPooling2D(pool_size=(2,2)),
- 
-                                    keras.layers.Dropout(0.5),                                                                        
-                                    keras.layers.Flatten(), # neural network building
-                                    keras.layers.Dense(units=128, activation='relu'), # input layers
+
+                                    keras.layers.Dropout(0.3),                                                                        
+                                    keras.layers.Flatten(), 
+                                    keras.layers.Dense(units=128, activation='relu'), 
                                     keras.layers.Dropout(0.1),                                    
                                     keras.layers.Dense(units=256, activation='relu'),                                    
-                                    keras.layers.Dropout(0.25),                                    
-                                    keras.layers.Dense(units=4, activation='softmax') # output layer
+                                    keras.layers.Dropout(0.2),                                    
+                                    keras.layers.Dense(units=4, activation='softmax') 
 ])
 
 
-
+s
 # compile cnn model
-cnn_model.compile(optimizer = Adam(lr=0.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+mannual_cnn_model.compile(optimizer = Adam(lr=0.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-cnn_model.summary()
+mannual_cnn_model.summary()
 
 # train cnn model
-history = cnn_model.fit(training_data, 
+history = mannual_cnn_model.fit(training_data, 
                           epochs=100, 
                           verbose=1, 
                           validation_data= valid_data,
